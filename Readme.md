@@ -13,20 +13,20 @@ Repositório do projeto de testes automatizados do sistema Zombie Plus, constru�
 
 ## 🤖 Como executar
 
-1. Clonar o repositório, instalar as dependências
+1. 📦 Clonar o repositório, instalar as dependências
 ```
 npm install
 ```
 
-2. Executar testes em Headless
+2. 🧪 Executar testes em Headless
 ```
-npx playwright test 
+npx playwright test
 ```
 
-3. Executar ver o relatório dos testes
+3. 📝 Executar ver o relatório dos testes
 ```
 npx playwright show-report
 ```
 
 <hr>
-Curso disponível em https://qaxperience.com
+Curso disponível em https://www.udemy.com/course/playwright-zombie/
