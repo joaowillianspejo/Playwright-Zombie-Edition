@@ -22,11 +22,31 @@ export class Api {
     this.token = body.token
   }
 
+  async getCompanyIdByName(companyName){
+    const response = await this.request.get('http://localhost:3333/companies', {
+      headers: {
+        Authorization: `Bearer ${this.token}`
+      },
+      params: {
+        name: companyName
+      }
+    })
+    
+    await expect(response.status()).toBe(200)
+
+    const body = await response.json()
+    
+    return body.data[0].id
+  }
+
   async postMovie(movie) {
 
     await this.setToken()
 
-    const queryResult = await executeSQL(`SELECT id FROM companies WHERE name = '${movie.company}'`)
+    // Buscar o ID da distribuidora via banco de dados
+    // const queryResult = await executeSQL(`SELECT id FROM companies WHERE name = '${movie.company}'`)
+
+    const companyId = await this.getCompanyIdByName(movie.company)
 
     const response = await this.request.post('http://localhost:3333/movies', {
       headers: {
@@ -38,7 +58,7 @@ export class Api {
       multipart: {
         title: movie.title,
         overview: movie.overview,
-        company_id: queryResult.rows[0].id,
+        company_id: companyId,            //queryResult.rows[0].id,
         release_year: movie.release_year,
         featured: movie.featured
       }
