@@ -13,7 +13,7 @@ test('deve poder cadastrar um novo filme', async ({ page }) => {
 
   await page.login.visit()
   await page.login.submitLogin('admin@zombieplus.com', 'pwd123')
-  await page.movies.isLoggedIn()
+  await page.login.isLoggedIn()
 
   await page.movies.create(movie.title, movie.overview, movie.company, movie.release_year)
 
@@ -23,7 +23,7 @@ test('deve poder cadastrar um novo filme', async ({ page }) => {
 test('não deve cadastrar um filme sem preencher os campos obrigatórios', async ({ page }) => {
   await page.login.visit()
   await page.login.submitLogin('admin@zombieplus.com', 'pwd123')
-  await page.movies.isLoggedIn()
+  await page.login.isLoggedIn()
 
   await page.movies.goForm()
   await page.movies.submit()

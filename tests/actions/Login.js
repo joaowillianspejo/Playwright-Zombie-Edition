@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
 
-export class LoginPage {
+export class Login {
   constructor(page) {
     this.page = page
   }
@@ -17,6 +17,14 @@ export class LoginPage {
     await this.page.getByPlaceholder('Senha').fill(password)
 
     await this.page.getByRole('button', { name: 'Entrar' }).click()
+  }
+
+  async isLoggedIn() {
+    await this.page.waitForLoadState('networkidle')
+    await expect(this.page).toHaveURL(/.*admin/)
+
+    const logoutButton = this.page.locator('a[href="/logout"]')
+    await expect(logoutButton).toBeVisible()
   }
 
   async alertHaveText(text) {
