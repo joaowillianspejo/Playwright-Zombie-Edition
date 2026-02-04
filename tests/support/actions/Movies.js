@@ -13,7 +13,7 @@ export class Movies {
     await this.page.getByRole('button', { name: 'Cadastrar' }).click()
   }
 
-  async create(title, overview, company, releaseYear, cover) {
+  async create(title, overview, company, releaseYear, cover, featured) {
     await this.goForm()
 
     // Buscar o elemento pela Label
@@ -32,7 +32,12 @@ export class Movies {
       .filter({ hasText: releaseYear.toString() })
       .click()
 
-    await this.page.locator('input[name="cover"]').setInputFiles('tests/support/fixtures' + cover)
+    await this.page.locator('input[name="cover"]')
+      .setInputFiles('tests/support/fixtures' + cover)
+
+    if (featured) {
+      await this.page.locator('.featured .react-switch').click()
+    }
 
     await this.submit()
   }
