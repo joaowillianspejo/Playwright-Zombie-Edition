@@ -24,7 +24,7 @@ export class Api {
 
   async postMovie(movie) {
 
-    // const queryResult = await executeSQL(`SELECT id FROM companies WHERE name = '${movie.company}'`)
+    const queryResult = await executeSQL(`SELECT id FROM companies WHERE name = '${movie.company}'`)
 
     const response = await this.request.post('http://localhost:3333/movies', {
       headers: {
@@ -36,7 +36,7 @@ export class Api {
       multipart: {
         title: movie.title,
         overview: movie.overview,
-        company_id: '339960f8-e1ce-4b1b-b72f-8c58d28d0cac', // queryResult.rows[0].id,
+        company_id: queryResult.rows[0].id,
         release_year: movie.release_year,
         featured: movie.featured
       }

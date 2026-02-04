@@ -10,7 +10,6 @@ const DbConfig = {
 }
 
 export async function executeSQL(sqlScript) {
-  
   try {
     const pool = new Pool(DbConfig)
 
@@ -19,6 +18,8 @@ export async function executeSQL(sqlScript) {
     const result = await client.query(sqlScript)
 
     console.log(result.rows)
+
+    return result
   } catch (error) {
     console.error('Erro ao executar SQL: ', error)
     throw error
