@@ -22,7 +22,7 @@ export class Api {
     this.token = body.token
   }
 
-  async getCompanyIdByName(companyName){
+  async getCompanyIdByName(companyName){    
     const response = await this.request.get('http://localhost:3333/companies', {
       headers: {
         Authorization: `Bearer ${this.token}`
@@ -40,8 +40,6 @@ export class Api {
   }
 
   async postMovie(movie) {
-
-    await this.setToken()
 
     // Buscar o ID da distribuidora via banco de dados
     // const queryResult = await executeSQL(`SELECT id FROM companies WHERE name = '${movie.company}'`)
