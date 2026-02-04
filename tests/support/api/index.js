@@ -24,6 +24,8 @@ export class Api {
 
   async postMovie(movie) {
 
+    await this.setToken()
+
     const queryResult = await executeSQL(`SELECT id FROM companies WHERE name = '${movie.company}'`)
 
     const response = await this.request.post('http://localhost:3333/movies', {

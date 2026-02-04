@@ -25,7 +25,6 @@ test('não deve poder cadastrar um filme duplicado', async ({ page, request }) =
 
   await executeSQL(`DELETE FROM movies WHERE title = '${movie.title}'`)
 
-  await request.api.setToken()
   await request.api.postMovie(movie)
 
   await page.login.do('admin@zombieplus.com', 'pwd123', 'Admin')
