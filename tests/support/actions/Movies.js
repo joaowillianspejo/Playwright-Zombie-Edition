@@ -13,7 +13,7 @@ export class Movies {
     await this.page.getByRole('button', { name: 'Cadastrar' }).click()
   }
 
-  async create(title, overview, company, releaseYear) {
+  async create(title, overview, company, releaseYear, cover) {
     await this.goForm()
 
     // Buscar o elemento pela Label
@@ -31,6 +31,8 @@ export class Movies {
     await this.page.locator('.react-select__option')
       .filter({ hasText: releaseYear.toString() })
       .click()
+
+    await this.page.locator('input[name="cover"]').setInputFiles('tests/support/fixtures' + cover)
 
     await this.submit()
   }

@@ -4,43 +4,49 @@
 			"title": "Zumbilândia",
 			"overview": "Um estudante tímido tentando chegar até sua família em Ohio, um cara durão armado tentando encontrar o último Twinkie e duas irmãs tentando encontrar um parque de diversões se unem para viajar através de uma América cheia de zumbis.",
 			"company": "Sony Pictures",
+			"release_year": 2009,
 			"featured": true,
-			"release_year": 2009
+			"cover": "/covers/movies/zumbilandia.jpg"
 		},
 		{
 			"title": "Guerra Mundial Z",
 			"overview": "Um vírus letal se espalha rapidamente e transforma seres humanos em zumbis. O ex-agente da ONU Gerry Lane é chamado para investigar a epidemia que está acabando com a humanidade, iniciando uma verdadeira corrida contra o tempo.",
 			"company": "Paramount Pictures",
+			"release_year": 2013,
 			"featured": true,
-			"release_year": 2013
+			"cover": "/covers/movies/guerra-mundial-z.jpg"
 		},
 		{
 			"title": "Eu Sou a Lenda",
 			"overview": "Após um vírus dizimar a humanidade e criar monstros noturnos, o virologista Robert Neville, único imune em NY, luta para sobreviver e achar a cura usando seu sangue, assombrado pela solidão.",
 			"company": "Warner Bros. Pictures",
+			"release_year": 2007,
 			"featured": false,
-			"release_year": 2007
+			"cover": "/covers/movies/eu-sou-a-lenda.jpg"
 		},
 		{
 			"title": "Todo Mundo Quase Morto",
 			"overview": "Shaun, um vendedor entediado, precisa salvar amigos e família quando um apocalipse zumbi toma Londres. Entre piadas e caos, ele tenta amadurecer e sobreviver refugiando-se no pub local.",
 			"company": "Universal Pictures",
+			"release_year": 2004,
 			"featured": true,
-			"release_year": 2004
+			"cover": "/covers/movies/todo-mundo-quase-morto.jpg"
 		},
 		{
 			"title": "Resident Evil: O Hóspede Maldito",
 			"overview": "Um vírus letal escapa em laboratório subterrâneo, transformando equipe em zumbis. Alice e um grupo militar precisam conter a infecção e o computador central antes que o horror chegue à superfície.",
 			"company": "Sony Pictures",
+			"release_year": 2002,
 			"featured": true,
-			"release_year": 2002
+			"cover": "/covers/movies/resident-evil-o-hospede-maldito.jpg"
 		},
 		{
 			"title": "Extermínio",
 			"overview": "28 dias após um vírus furioso devastar o Reino Unido, Jim acorda do coma em uma Londres deserta e hostil. Ao lado de sobreviventes, ele luta contra os infectados e a própria barbárie humana.",
 			"company": "Fox Entertainment",
+			"release_year": 2002,
 			"featured": false,
-			"release_year": 2002
+			"cover": "/covers/movies/exterminio.jpg"
 		}
 	]
 }
