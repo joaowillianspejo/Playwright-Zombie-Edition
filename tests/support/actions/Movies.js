@@ -6,7 +6,7 @@ export class Movies {
   }
 
   async goForm() {
-    await this.page.locator('a[href$="register"]').click()
+    await this.page.locator('.actions a[href$="register"]').click()
   }
 
   async submit() {
