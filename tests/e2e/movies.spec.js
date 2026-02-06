@@ -33,7 +33,7 @@ test('deve poder buscar um filme cadastrado', async ({ page, request }) => {
   await page.movies.findMovie(movie.title)
 })
 
-test('deve poder bucar um filme por termo', async ({ page, request }) => {
+test('deve poder bucar um filme por um termo', async ({ page, request }) => {
   const movies = data.movies
   const input = 'zumbi'
   
