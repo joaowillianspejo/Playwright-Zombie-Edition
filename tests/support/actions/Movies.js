@@ -49,6 +49,14 @@ export class Movies {
   }
 
   async removeMovie(title) {
+    // Remover o filme diretamente sem a busca
+    
+    // xpath
+    // await this.page.locator(`//td[text()="${title}"]/..//button`).click()
+
+    // getByRole
+    // await this.page.getByRole('row', { name: title }).getByRole('button').click()
+    
     await this.findMovie(title)
 
     await this.page.locator('.remove-item button').click()
