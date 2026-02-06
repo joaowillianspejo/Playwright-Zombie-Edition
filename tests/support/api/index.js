@@ -43,6 +43,7 @@ export class Api {
 
     // Buscar o ID da distribuidora via banco de dados
     // const queryResult = await executeSQL(`SELECT id FROM companies WHERE name = '${movie.company}'`)
+    // const companyId = queryResult.rows[0].id
 
     const companyId = await this.getCompanyIdByName(movie.company)
 
@@ -56,7 +57,7 @@ export class Api {
       multipart: {
         title: movie.title,
         overview: movie.overview,
-        company_id: companyId,            //queryResult.rows[0].id,
+        company_id: companyId,
         release_year: movie.release_year,
         featured: movie.featured
       }

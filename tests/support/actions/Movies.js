@@ -41,23 +41,36 @@ export class Movies {
     await this.submit()
   }
 
-  async findMovie(title) {
+  async search(target) {
+    await this.page.locator('.actions input[placeholder="Busque pelo nome"]').fill(target)
+    await this.page.locator('.actions button[type="submit"]').click()
+
+    const rows = await this.page.getByRole('row')
+
+    const count = await rows.count()
+
+    for (let i = 0; i < count; i++) {
+      await expect(rows.nth(i)).toContainText(target, { ignoreCase: true })
+    }
+  }
+
+  async findMovieByName(title) {
     await this.page.locator('.actions input[placeholder="Busque pelo nome"]').fill(title)
-    await this.page.locator('button[type="submit"]').click()
+    await this.page.locator('.actions button[type="submit"]').click()
 
     await expect(this.page.locator('.title')).toHaveText(title)
   }
 
   async removeMovie(title) {
     // Remover o filme diretamente sem a busca
-    
+
     // xpath
     // await this.page.locator(`//td[text()="${title}"]/..//button`).click()
 
     // getByRole
     // await this.page.getByRole('row', { name: title }).getByRole('button').click()
     
-    await this.findMovie(title)
+    await this.findMovieByName(title)
 
     await this.page.locator('.remove-item button').click()
     await this.page.locator('.tooltip .confirm-removal').click()
