@@ -19,6 +19,23 @@ test('deve poder cadastrar um novo filme', async ({ page }) => {
   await page.modal.haveText(message)
 })
 
+test('deve poder remover um filme', async ({ page, request }) => {
+  const randomMovie = Math.floor(Math.random() * data.movies.length)
+
+  const movie = data.movies[randomMovie]
+
+  await executeSQL(`DELETE FROM movies WHERE title = '${movie.title}'`)
+
+  await request.api.postMovie(movie)
+
+  await page.login.do('admin@zombieplus.com', 'pwd123', 'Admin')
+
+  await page.movies.removeMovie(movie.title)
+
+  const message = 'Filme removido com sucesso.'
+  await page.modal.haveText(message)
+})
+
 test('não deve poder cadastrar um filme duplicado', async ({ page, request }) => {
   const randomMovie = Math.floor(Math.random() * data.movies.length)
 

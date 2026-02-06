@@ -41,6 +41,20 @@ export class Movies {
     await this.submit()
   }
 
+  async findMovie(title) {
+    await this.page.locator('.actions input[placeholder="Busque pelo nome"]').fill(title)
+    await this.page.locator('button[type="submit"]').click()
+
+    await expect(this.page.locator('.title')).toHaveText(title)
+  }
+
+  async removeMovie(title) {
+    await this.findMovie(title)
+
+    await this.page.locator('.remove-item button').click()
+    await this.page.locator('.tooltip .confirm-removal').click()
+  }
+
   async alertHaveText(target) {
     await expect(this.page.locator('.alert')).toHaveText(target)
   }
