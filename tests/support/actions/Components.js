@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
 
-export class Toast {
+export class Modal {
 
   constructor(page) {
     this.page = page
@@ -13,9 +13,8 @@ export class Toast {
     // const content = await page.content()
     // console.log(content)
 
-    const toast = this.page.locator('.toast')
+    const element = this.page.locator('.swal2-html-container')
 
-    await expect(toast).toHaveText(message)
-    await expect(toast).toBeHidden({ timeout: 5000 })
+    await expect(element).toHaveText(message)
   }
 }

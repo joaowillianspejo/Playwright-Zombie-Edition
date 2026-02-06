@@ -11,7 +11,8 @@ test('deve cadastrar um lead na fila de espera', async ({ page }) => {
   await page.leads.openLeadModal()
   await page.leads.submitLeadForm(name, email)
 
-  await page.toast.haveText('Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato!')
+  const message = 'Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato.'
+  await page.modal.haveText(message)
 
 });
 
@@ -33,7 +34,8 @@ test('não deve cadastrar um lead com email já existente', async ({ page, reque
   await page.leads.openLeadModal()
   await page.leads.submitLeadForm(name, email)
 
-  await page.toast.haveText('O endereço de e-mail fornecido já está registrado em nossa fila de espera.')
+  const message = 'Verificamos que o endereço de e-mail fornecido já consta em nossa lista de espera. Isso significa que você está um passo mais perto de aproveitar nossos serviços.'
+  await page.modal.haveText(message)
 
 });
 

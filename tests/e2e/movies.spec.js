@@ -15,7 +15,8 @@ test('deve poder cadastrar um novo filme', async ({ page }) => {
 
   await page.movies.create(movie)
 
-  await page.toast.haveText('UhullCadastro realizado com sucesso!')
+  const message = `O filme '${movie.title}' foi adicionado ao catálogo.`
+  await page.modal.haveText(message)
 })
 
 test('não deve poder cadastrar um filme duplicado', async ({ page, request }) => {
@@ -31,7 +32,8 @@ test('não deve poder cadastrar um filme duplicado', async ({ page, request }) =
 
   await page.movies.create(movie)
 
-  await page.toast.haveText('Oops!Este conteúdo já encontra-se cadastrado no catálogo')
+  const message = `O título '${movie.title}' já consta em nosso catálogo. Por favor, verifique se há necessidade de atualizações ou correções para este item.`
+  await page.modal.haveText(message)
 })
 
 test('não deve cadastrar um filme sem preencher os campos obrigatórios', async ({ page }) => {
@@ -41,9 +43,9 @@ test('não deve cadastrar um filme sem preencher os campos obrigatórios', async
   await page.movies.submit()
 
   await page.movies.alertHaveText([
-    'Por favor, informe o título.',
-    'Por favor, informe a sinopse.',
-    'Por favor, informe a empresa distribuidora.',
-    'Por favor, informe o ano de lançamento.'
+    'Campo obrigatório',
+    'Campo obrigatório',
+    'Campo obrigatório',
+    'Campo obrigatório'
   ])
 })
