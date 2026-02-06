@@ -1,0 +1,40 @@
+{
+  "tvshows": [
+    {
+      "title": "Marvel Zumbis",
+      "overview": "Em um universo alternativo, um vírus zumbi infecta os heróis da Marvel, transformando-os em monstros famintos por carne. Mesmo mortos-vivos, mantêm inteligência e poderes, virando a maior ameaça à Terra.",
+      "company": "Walt Disney Studios",
+      "release_year": 2025,
+      "seasons": 1,
+      "featured": true,
+      "cover": "/covers/tvshows/marvel-zumbis.jpg"
+    },
+    {
+      "title": "The Walking Dead",
+      "overview": "Após apocalipse zumbi, o xerife Rick Grimes acorda do coma e lidera um grupo de sobreviventes em busca de um lar seguro. Eles enfrentam os mortos e a crueldade humana, lutando por humanidade.",
+      "company": "Fox Entertainment",
+      "release_year": 2010,
+      "seasons": 11,
+      "featured": true,
+      "cover": "/covers/tvshows/the-walking-dead.jpg"
+    },
+    {
+      "title": "Z Nation",
+      "overview": "Três anos após um apocalipse zumbi, um grupo precisa escoltar Murphy, único imune a mordidas, dos EUA a um laboratório na Califórnia. Seu sangue é a última esperança de cura, mas ele esconde segredos.",
+      "company": "Universal Pictures",
+      "release_year": 2014,
+      "seasons": 5,
+      "featured": true,
+      "cover": "/covers/tvshows/z-nation.jpg"
+    },
+    {
+      "title": "The Last of Us",
+      "overview": "20 anos após fungo destruir a civilização, Joel, um sobrevivente calejado, precisa escoltar Ellie, uma garota imune, por um EUA pós-apocalíptico perigoso. Uma jornada brutal e emocionante de sobrevivência.",
+      "company": "Warner Bros. Pictures",
+      "release_year": 2023,
+      "seasons": 2,
+      "featured": true,
+      "cover": "/covers/tvshows/the-last-of-us.jpg"
+    }
+  ]
+}
