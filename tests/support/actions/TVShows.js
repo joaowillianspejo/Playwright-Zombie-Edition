@@ -5,8 +5,12 @@ export class TVShows {
     this.page = page
   }
 
-  async goForm() {
+  async go() {
     await this.page.locator('.navbar a[href$="tvshows"]').click()
+  }
+
+  async goForm() {
+    await this.go()
     await this.page.locator('.actions a[href$="register"]').click()
   }
 
@@ -42,15 +46,32 @@ export class TVShows {
     await this.submit()
   }
 
-  async findTVShowByName(title) {
-    await this.page.locator('.actions input[placeholder="Busque pelo nome"]').fill(title)
+  async search(target) {
+    await this.go()
+
+    await this.page.locator('.actions input[placeholder="Busque pelo nome"]').fill(target)
     await this.page.locator('.actions button[type="submit"]').click()
 
-    await expect(this.page.locator('.title')).toHaveText(title)
+    const rows = await this.page.getByRole('row')
+
+    const count = await rows.count()
+
+    for (let i = 0; i < count; i++) {
+      await expect(rows.nth(i)).toContainText(target, { ignoreCase: true })
+    }
   }
 
-  async removeTVShow(title) {
-    await this.findTVShowByName(title)
+  async findTVShowByName(tvshow) {
+    await this.go()
+
+    await this.page.locator('.actions input[placeholder="Busque pelo nome"]').fill(tvshow.title)
+    await this.page.locator('.actions button[type="submit"]').click()
+
+    await expect(this.page.locator('.title')).toContainText(`${tvshow.title}${tvshow.seasons}`)
+  }
+
+  async removeTVShow(tvshow) {
+    await this.findTVShowByName(tvshow)
 
     await this.page.locator('.remove-item button').click()
     await this.page.locator('.tooltip .confirm-removal').click()
