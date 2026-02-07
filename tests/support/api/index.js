@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test'
 
-import { executeSQL } from '../database'
+// import { executeSQL } from '../database'
 
 export class Api {
   constructor(request) {
@@ -60,6 +60,27 @@ export class Api {
         company_id: companyId,
         release_year: movie.release_year,
         featured: movie.featured
+      }
+    })
+  }
+
+  async postTVShow(tvshow) {
+    const companyId = await this.getCompanyIdByName(tvshow.company)
+
+    const response = await this.request.post('http://localhost:3333/tvshows', {
+      headers: {
+        Authorization: `Bearer ${this.token}`,
+        ContentType: 'multipart/form-data',
+        Accept: 'application/json, text/plain, */*'
+      },
+
+      multipart: {
+        title: tvshow.title,
+        overview: tvshow.overview,
+        company_id: companyId,
+        release_year: tvshow.release_year,
+        seasons: tvshow.seasons,
+        featured: tvshow.featured
       }
     })
   }
