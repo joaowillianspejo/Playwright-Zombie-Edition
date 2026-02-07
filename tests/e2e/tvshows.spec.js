@@ -35,3 +35,18 @@ test('não deve poder cadastrar uma série duplicada', async ({ page, request })
   const message = `O título '${tvshow.title}' já consta em nosso catálogo. Por favor, verifique se há necessidade de atualizações ou correções para este item.`
   await page.modal.haveText(message)
 })
+
+test('não deve cadastrar uma série sem preencher os campos obrigatórios', async ({ page }) => {
+  await page.login.do('admin@zombieplus.com', 'pwd123', 'Admin')
+
+  await page.tvshows.goForm()
+  await page.tvshows.submit()
+
+  await page.tvshows.alertHaveText([
+    'Campo obrigatório',
+    'Campo obrigatório',
+    'Campo obrigatório',
+    'Campo obrigatório',
+    'Campo obrigatório (apenas números)'
+  ])
+})

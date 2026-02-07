@@ -1,3 +1,5 @@
+import { expect } from '@playwright/test';
+
 export class TVShows {
   constructor(page) {
     this.page = page
@@ -38,5 +40,9 @@ export class TVShows {
     }
 
     await this.submit()
+  }
+
+  async alertHaveText(target) {
+    await expect(this.page.locator('.alert')).toHaveText(target)
   }
 }
