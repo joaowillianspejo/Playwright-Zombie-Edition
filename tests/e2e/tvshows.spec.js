@@ -19,6 +19,23 @@ test('deve poder cadastrar uma nova série', async ({ page }) => {
   await page.modal.haveText(message)
 })
 
+test('deve poder remover uma série', async ({ page, request }) => {
+  const randomTVShow = Math.floor(Math.random() * data.tvshows.length)
+
+  const tvshow = data.tvshows[randomTVShow]
+
+  await executeSQL(`DELETE FROM tvshows WHERE title = '${tvshow.title}'`)
+
+  await request.api.postTVShow(tvshow)
+
+  await page.login.do('admin@zombieplus.com', 'pwd123', 'Admin')
+
+  await page.tvshows.removeTVShow(tvshow.title)
+
+  const message = 'Série removida com sucesso.'
+  await page.modal.haveText(message)
+})
+
 test('não deve poder cadastrar uma série duplicada', async ({ page, request }) => {
   const randomTVShow = Math.floor(Math.random() * data.tvshows.length)
 

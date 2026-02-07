@@ -42,6 +42,20 @@ export class TVShows {
     await this.submit()
   }
 
+  async findTVShowByName(title) {
+    await this.page.locator('.actions input[placeholder="Busque pelo nome"]').fill(title)
+    await this.page.locator('.actions button[type="submit"]').click()
+
+    await expect(this.page.locator('.title')).toHaveText(title)
+  }
+
+  async removeTVShow(title) {
+    await this.findTVShowByName(title)
+
+    await this.page.locator('.remove-item button').click()
+    await this.page.locator('.tooltip .confirm-removal').click()
+  }
+
   async alertHaveText(target) {
     await expect(this.page.locator('.alert')).toHaveText(target)
   }
