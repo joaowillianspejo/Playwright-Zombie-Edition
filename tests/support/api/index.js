@@ -5,12 +5,13 @@ import 'dotenv/config'
 
 export class Api {
   constructor(request) {
+    this.baseAPI = process.env.BASE_API
     this.request = request
     this.token = undefined
   }
 
   async setToken() {
-    const newSession = await this.request.post(`${process.env.BASE_API}/sessions`, {
+    const newSession = await this.request.post(this.baseAPI + '/sessions', {
       data: {
         email: 'admin@zombieplus.com',
         password: 'pwd123'
@@ -24,7 +25,7 @@ export class Api {
   }
 
   async getCompanyIdByName(companyName){    
-    const response = await this.request.get(`${process.env.BASE_API}/companies`, {
+    const response = await this.request.get(this.baseAPI + '/companies', {
       headers: {
         Authorization: `Bearer ${this.token}`
       },
@@ -48,7 +49,7 @@ export class Api {
 
     const companyId = await this.getCompanyIdByName(movie.company)
 
-    const response = await this.request.post(`${process.env.BASE_API}/movies`, {
+    const response = await this.request.post(this.baseAPI + '/movies', {
       headers: {
         Authorization: `Bearer ${this.token}`,
         ContentType: 'multipart/form-data',
@@ -63,12 +64,14 @@ export class Api {
         featured: movie.featured
       }
     })
+
+    expect(response.status()).toBe(201)
   }
 
   async postTVShow(tvshow) {
     const companyId = await this.getCompanyIdByName(tvshow.company)
 
-    const response = await this.request.post(`${process.env.BASE_API}/tvshows`, {
+    const response = await this.request.post(this.baseAPI + '/tvshows', {
       headers: {
         Authorization: `Bearer ${this.token}`,
         ContentType: 'multipart/form-data',
@@ -84,5 +87,7 @@ export class Api {
         featured: tvshow.featured
       }
     })
+
+    expect(response.status()).toBe(201)
   }
 }
