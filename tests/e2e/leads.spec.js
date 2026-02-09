@@ -2,6 +2,12 @@ import { fakerPT_BR as faker } from '@faker-js/faker';
 
 import { test, expect } from '../support'
 
+import { executeSQL } from '../support/database'
+
+test.beforeAll(async () => {
+  await executeSQL('DELETE FROM leads')
+})
+
 test('deve cadastrar um lead na fila de espera', async ({ page }) => {
   const name = faker.person.fullName()
   const email = faker.internet.email({ firstName: name.split(' ')[0] , lastName: name.split(' ')[1] })
@@ -13,7 +19,6 @@ test('deve cadastrar um lead na fila de espera', async ({ page }) => {
 
   const message = 'Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato.'
   await page.modal.haveText(message)
-
 });
 
 test('não deve cadastrar um lead com email já existente', async ({ page, request }) => {
@@ -36,7 +41,6 @@ test('não deve cadastrar um lead com email já existente', async ({ page, reque
 
   const message = 'Verificamos que o endereço de e-mail fornecido já consta em nossa lista de espera. Isso significa que você está um passo mais perto de aproveitar nossos serviços.'
   await page.modal.haveText(message)
-
 });
 
 test('não deve cadastrar um lead com email inválido', async ({ page }) => {
